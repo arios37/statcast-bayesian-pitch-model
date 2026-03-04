@@ -195,8 +195,10 @@ export default function App() {
   }, [pitcher]);
 
   const shrinkageData = useMemo(() => {
-    if (!data) return [];
+    if (!data || !pitcher) return [];
+    const team = pitcher.team;
     return Object.entries(data.pitchers)
+      .filter(([, p]) => p.team === team)
       .map(([name, p]) => ({
         name: name.split(" ").pop(),
         fullName: name,
@@ -209,7 +211,7 @@ export default function App() {
         inModel: p.inModel,
       }))
       .sort((a, b) => a.posterior - b.posterior);
-  }, [data, selectedPitcher]);
+  }, [data, pitcher, selectedPitcher]);
 
   const countData = useMemo(() => {
     if (!pitcher) return [];
@@ -219,8 +221,10 @@ export default function App() {
   const filteredPitchers = useMemo(() => {
     if (!data) return [];
     const q = searchQuery.toLowerCase().trim();
-    if (!q) return pitcherNames;
-    return pitcherNames.filter((name) => name.toLowerCase().includes(q));
+    if (!q) return [];
+    return pitcherNames
+      .filter((name) => name.toLowerCase().includes(q))
+      .slice(0, 25);
   }, [data, pitcherNames, searchQuery]);
 
   if (loading) return <LoadingScreen />;
@@ -302,17 +306,17 @@ export default function App() {
               style={{
                 width: "100%", background: "rgba(255,255,255,0.06)", color: "#fff",
                 border: `1px solid ${searchOpen ? "#60a5fa" : "rgba(255,255,255,0.15)"}`,
-                borderRadius: searchOpen && filteredPitchers.length > 0 ? "4px 4px 0 0" : 4,
+                borderRadius: searchOpen && searchQuery.trim().length > 0 && filteredPitchers.length > 0 ? "4px 4px 0 0" : 4,
                 padding: "6px 8px", fontSize: 13, fontFamily: "inherit",
                 outline: "none", transition: "border-color 0.15s",
               }}
             />
-            {searchOpen && (
+            {searchOpen && searchQuery.trim().length > 0 && (
               <div style={{
                 position: "absolute", top: "100%", left: 0, right: 0, zIndex: 50,
                 background: "#1a1d27", border: "1px solid rgba(255,255,255,0.15)",
                 borderTop: "none", borderRadius: "0 0 6px 6px",
-                maxHeight: 240, overflowY: "auto",
+                maxHeight: 280, overflowY: "auto",
               }}>
                 {filteredPitchers.length === 0 ? (
                   <div style={{
@@ -348,6 +352,9 @@ export default function App() {
                       <span style={{
                         float: "right", fontSize: 10, color: "rgba(255,255,255,0.25)",
                       }}>
+                        <span style={{ color: "rgba(255,255,255,0.35)", marginRight: 8 }}>
+                          {data.pitchers[name].team}
+                        </span>
                         {data.pitchers[name].nPitches.toLocaleString()}
                       </span>
                     </div>
@@ -361,8 +368,7 @@ export default function App() {
         {/* Stat chips */}
         <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
           {[
-            { label: "EST. ERA", value: pitcher.estimatedERA.toFixed(2) },
-            { label: "EST. IP", value: pitcher.estimatedIP.toFixed(1) },
+            { label: "TEAM", value: pitcher.team || "—" },
             { label: "PITCHES", value: pitcher.nPitches.toLocaleString() },
             {
               label: "alpha x 10^3",
@@ -604,11 +610,11 @@ export default function App() {
           <div>
             <div style={{ marginBottom: 16 }}>
               <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "#fff" }}>
-                Bayesian Shrinkage: Raw vs. Hierarchical Estimates
+                Bayesian Shrinkage: {pitcher.team} Pitching Staff
               </h2>
               <p style={{ margin: "4px 0 0", fontSize: 11, color: "rgba(255,255,255,0.4)" }}>
                 Partial pooling pulls extreme raw means toward the league hyperprior mu_alpha.
-                Pitchers with fewer pitches experience more shrinkage.
+                Pitchers with fewer pitches experience more shrinkage. Showing all {pitcher.team} pitchers.
                 Diamond = raw mean. Bar = posterior mean.
               </p>
             </div>
