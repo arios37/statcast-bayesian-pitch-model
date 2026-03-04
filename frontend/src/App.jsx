@@ -155,6 +155,8 @@ export default function App() {
   const [error, setError] = useState(null);
   const [selectedPitcher, setSelectedPitcher] = useState(null);
   const [activeTab, setActiveTab] = useState("movement");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
 
   // Load JSON data
   useEffect(() => {
@@ -214,6 +216,13 @@ export default function App() {
     return generateCountData(pitcher.pitches);
   }, [pitcher]);
 
+  const filteredPitchers = useMemo(() => {
+    if (!data) return [];
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return pitcherNames;
+    return pitcherNames.filter((name) => name.toLowerCase().includes(q));
+  }, [data, pitcherNames, searchQuery]);
+
   if (loading) return <LoadingScreen />;
   if (error) return <ErrorScreen error={error} />;
   if (!pitcher) return <ErrorScreen error="No pitcher data available" />;
@@ -265,27 +274,87 @@ export default function App() {
           </div>
           <div style={{
             background: "rgba(0,0,0,0.3)", borderRadius: 8, padding: "10px 14px",
-            border: "1px solid rgba(255,255,255,0.08)", minWidth: 200,
+            border: "1px solid rgba(255,255,255,0.08)", minWidth: 240, position: "relative",
           }}>
             <div style={{ fontSize: 9, letterSpacing: 2, color: "#60a5fa", marginBottom: 6 }}>
-              SELECT PITCHER
+              SEARCH PITCHER
             </div>
-            <select
-              value={selectedPitcher}
-              onChange={(e) => setSelectedPitcher(e.target.value)}
+            <input
+              type="text"
+              value={searchOpen ? searchQuery : selectedPitcher || ""}
+              placeholder="Type a name..."
+              onFocus={() => { setSearchOpen(true); setSearchQuery(""); }}
+              onBlur={() => setTimeout(() => setSearchOpen(false), 200)}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && filteredPitchers.length > 0) {
+                  setSelectedPitcher(filteredPitchers[0]);
+                  setSearchQuery("");
+                  setSearchOpen(false);
+                  e.target.blur();
+                }
+                if (e.key === "Escape") {
+                  setSearchQuery("");
+                  setSearchOpen(false);
+                  e.target.blur();
+                }
+              }}
               style={{
                 width: "100%", background: "rgba(255,255,255,0.06)", color: "#fff",
-                border: "1px solid rgba(255,255,255,0.15)", borderRadius: 4,
+                border: `1px solid ${searchOpen ? "#60a5fa" : "rgba(255,255,255,0.15)"}`,
+                borderRadius: searchOpen && filteredPitchers.length > 0 ? "4px 4px 0 0" : 4,
                 padding: "6px 8px", fontSize: 13, fontFamily: "inherit",
-                cursor: "pointer", outline: "none",
+                outline: "none", transition: "border-color 0.15s",
               }}
-            >
-              {pitcherNames.map((name) => (
-                <option key={name} value={name} style={{ background: "#1a1d27" }}>
-                  {name}
-                </option>
-              ))}
-            </select>
+            />
+            {searchOpen && (
+              <div style={{
+                position: "absolute", top: "100%", left: 0, right: 0, zIndex: 50,
+                background: "#1a1d27", border: "1px solid rgba(255,255,255,0.15)",
+                borderTop: "none", borderRadius: "0 0 6px 6px",
+                maxHeight: 240, overflowY: "auto",
+              }}>
+                {filteredPitchers.length === 0 ? (
+                  <div style={{
+                    padding: "10px 12px", fontSize: 11, color: "rgba(255,255,255,0.3)",
+                    textAlign: "center",
+                  }}>
+                    No pitchers found
+                  </div>
+                ) : (
+                  filteredPitchers.map((name) => (
+                    <div
+                      key={name}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        setSelectedPitcher(name);
+                        setSearchQuery("");
+                        setSearchOpen(false);
+                      }}
+                      style={{
+                        padding: "7px 12px", fontSize: 12, cursor: "pointer",
+                        color: name === selectedPitcher ? "#60a5fa" : "#c8ccd4",
+                        background: name === selectedPitcher ? "rgba(96,165,250,0.08)" : "transparent",
+                        borderLeft: name === selectedPitcher ? "2px solid #60a5fa" : "2px solid transparent",
+                        transition: "background 0.1s",
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.06)"; }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = name === selectedPitcher
+                          ? "rgba(96,165,250,0.08)" : "transparent";
+                      }}
+                    >
+                      <span>{name}</span>
+                      <span style={{
+                        float: "right", fontSize: 10, color: "rgba(255,255,255,0.25)",
+                      }}>
+                        {data.pitchers[name].nPitches.toLocaleString()}
+                      </span>
+                    </div>
+                  ))
+                )}
+              </div>
+            )}
           </div>
         </div>
 
