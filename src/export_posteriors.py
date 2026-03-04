@@ -27,7 +27,7 @@ import arviz as az
 import numpy as np
 import pandas as pd
 
-from src.data import get_data, DATA_DIR
+from src.data import DATA_DIR, get_data
 from src.features import build_model_matrix
 
 logger = logging.getLogger(__name__)
@@ -160,7 +160,7 @@ def build_pitcher_posterior(
 
     n_pitches = len(df_pitcher)
     raw_mean_dre = float(df_pitcher["delta_run_exp"].mean())
-    raw_sd_dre = float(df_pitcher["delta_run_exp"].std())
+    raw_sd_dre = float(df_pitcher["delta_run_exp"].std())  # noqa: F841
 
     # Check if pitcher is in the model
     in_model = False
