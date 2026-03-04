@@ -100,7 +100,7 @@ const PosteriorTooltip = ({ active, payload }) => {
   return (
     <div style={tooltipStyle}>
       <div>
-        alpha x 10^3: <span style={{ color: "#60a5fa" }}>{payload[0].payload.x.toFixed(1)}</span>
+        α × 10³: <span style={{ color: "#60a5fa" }}>{payload[0].payload.x.toFixed(1)}</span>
       </div>
       <div>
         density: <span style={{ color: "#a78bfa" }}>{payload[0].value.toFixed(1)}</span>
@@ -274,7 +274,7 @@ export default function App() {
             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 6 }}>
               Hierarchical model | {data._meta.year} season |{" "}
               {data._meta.totalPitches.toLocaleString()} pitches |{" "}
-              Pitcher-level partial pooling on delta run expectancy
+              Pitcher-level partial pooling on δ run expectancy
             </div>
           </div>
           <div style={{
@@ -373,7 +373,7 @@ export default function App() {
             { label: "IP", value: pitcher.inningsPitched != null ? pitcher.inningsPitched.toFixed(1) : "—" },
             { label: "PITCHES", value: pitcher.nPitches.toLocaleString() },
             {
-              label: "alpha x 10^3",
+              label: "α × 10³",
               value: (pitcher.posteriorMean * 1000).toFixed(1),
               color: pitcher.posteriorMean < 0 ? "#34d399" : "#f87171",
             },
@@ -509,17 +509,17 @@ export default function App() {
           <div>
             <div style={{ marginBottom: 16 }}>
               <h2 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "#fff" }}>
-                Posterior Distribution: alpha_{selectedPitcher.split(" ").pop()}
+                Posterior Distribution: α_{selectedPitcher.split(" ").pop()}
               </h2>
               <p style={{ margin: "4px 0 0", fontSize: 11, color: "rgba(255,255,255,0.4)" }}>
                 {pitcher.inModel
-                  ? "MCMC posterior from hierarchical model. Pitcher-level random intercept from Normal(mu_alpha, sigma_alpha)."
+                  ? "MCMC posterior from hierarchical model. Pitcher-level random intercept from Normal(μ_α, σ_α)."
                   : "Conjugate normal-normal update using the model's estimated hyperprior. Analytically equivalent to MCMC for this model structure."}
-                {" "}Units: delta run expectancy x 10^3. Negative = prevents runs.
+                {" "}Units: δ run expectancy × 10³. Negative = prevents runs.
               </p>
             </div>
             <ResponsiveContainer width="100%" height={380}>
-              <AreaChart data={posteriorData} margin={{ top: 10, right: 30, bottom: 30, left: 20 }}>
+              <AreaChart data={posteriorData} margin={{ top: 24, right: 30, bottom: 30, left: 20 }}>
                 <defs>
                   <linearGradient id="posteriorGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#60a5fa" stopOpacity={0.4} />
@@ -530,7 +530,7 @@ export default function App() {
                 <XAxis
                   dataKey="x" type="number" tick={{ fill: "#666", fontSize: 10 }}
                   label={{
-                    value: "alpha x 10^3 (delta run expectancy per pitch)",
+                    value: "α × 10³ (δ run expectancy per pitch)",
                     position: "bottom", offset: 10, fill: "#555", fontSize: 10,
                   }}
                 />
@@ -542,12 +542,12 @@ export default function App() {
                 <ReferenceLine
                   x={leagueMean * 1000}
                   stroke="#ef4444" strokeDasharray="6 3" strokeWidth={1.5}
-                  label={{ value: "mu_alpha (league)", position: "top", fill: "#ef4444", fontSize: 9 }}
+                  label={{ value: "μ_α (league)", position: "insideTopLeft", fill: "#ef4444", fontSize: 9, dy: -6 }}
                 />
                 <ReferenceLine
                   x={pitcher.posteriorMean * 1000}
                   stroke="#60a5fa" strokeDasharray="3 3" strokeWidth={1.5}
-                  label={{ value: "alpha_hat", position: "top", fill: "#60a5fa", fontSize: 10, fontWeight: 700 }}
+                  label={{ value: "α̂", position: "insideTopRight", fill: "#60a5fa", fontSize: 10, fontWeight: 700, dy: -6 }}
                 />
                 <ReferenceLine
                   x={pitcher.rawMeanDRE * 1000}
@@ -565,9 +565,9 @@ export default function App() {
               marginTop: 12, flexWrap: "wrap",
             }}>
               {[
-                { color: "#60a5fa", dash: "3 3", label: "Posterior mean (alpha_hat)" },
+                { color: "#60a5fa", dash: "3 3", label: "Posterior mean (α̂)" },
                 { color: "#f59e0b", dash: "3 3", label: "Raw sample mean" },
-                { color: "#ef4444", dash: "6 3", label: "League hyperprior (mu_alpha)" },
+                { color: "#ef4444", dash: "6 3", label: "League hyperprior (μ_α)" },
               ].map((l) => (
                 <div key={l.label} style={{
                   display: "flex", alignItems: "center", gap: 6, fontSize: 10,
@@ -588,7 +588,7 @@ export default function App() {
               color: "rgba(255,255,255,0.55)", lineHeight: 1.6,
             }}>
               <strong style={{ color: "#60a5fa" }}>Interpretation:</strong>{" "}
-              The posterior mean alpha_hat = {(pitcher.posteriorMean * 1000).toFixed(1)} x 10^-3
+              The posterior mean α̂ = {(pitcher.posteriorMean * 1000).toFixed(1)} × 10⁻³
               indicates {selectedPitcher}{" "}
               {pitcher.posteriorMean < 0 ? "prevents" : "allows"} approximately{" "}
               {Math.abs(pitcher.posteriorMean * 1000).toFixed(1)} milliRuns per pitch
@@ -598,8 +598,8 @@ export default function App() {
                 <span style={{ color: "#f59e0b" }}>
                   {" "}This pitcher was not in the MCMC subsample. The posterior was computed
                   via conjugate normal-normal update using the model's estimated hyperprior
-                  (mu_alpha = {(data.hyperprior.mu_alpha_mean * 1000).toFixed(1)},
-                  sigma_alpha = {(data.hyperprior.sigma_alpha_mean * 1000).toFixed(1)}) and
+                  (μ_α = {(data.hyperprior.mu_alpha_mean * 1000).toFixed(1)},
+                  σ_α = {(data.hyperprior.sigma_alpha_mean * 1000).toFixed(1)}) and{" "}
                   {pitcher.nPitches.toLocaleString()} observed pitches.
                 </span>
               )}
@@ -615,7 +615,7 @@ export default function App() {
                 Bayesian Shrinkage: {pitcher.team} Pitching Staff
               </h2>
               <p style={{ margin: "4px 0 0", fontSize: 11, color: "rgba(255,255,255,0.4)" }}>
-                Partial pooling pulls extreme raw means toward the league hyperprior mu_alpha.
+                Partial pooling pulls extreme raw means toward the league hyperprior μ_α.
                 Pitchers with fewer pitches experience more shrinkage. Showing all {pitcher.team} pitchers.
                 Diamond = raw mean. Bar = posterior mean.
               </p>
@@ -629,7 +629,7 @@ export default function App() {
                 <XAxis
                   type="number" tick={{ fill: "#666", fontSize: 10 }}
                   label={{
-                    value: "delta run expectancy x 10^3 per pitch",
+                    value: "δ run expectancy × 10³ per pitch",
                     position: "bottom", offset: 5, fill: "#555", fontSize: 10,
                   }}
                 />
@@ -655,7 +655,7 @@ export default function App() {
                         </div>
                         <div>n = {d.nPitches.toLocaleString()} pitches</div>
                         <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", marginTop: 4 }}>
-                          Shrinkage: {Math.abs(d.raw - d.posterior).toFixed(1)} toward mu_alpha
+                          Shrinkage: {Math.abs(d.raw - d.posterior).toFixed(1)} toward μ_α
                           {!d.inModel && " (conjugate update)"}
                         </div>
                       </div>
@@ -684,7 +684,7 @@ export default function App() {
               {[
                 { shape: "\u25a0", color: "#60a5fa", label: "Posterior mean (partial pooling)" },
                 { shape: "\u25c6", color: "#f59e0b", label: "Raw sample mean (no pooling)" },
-                { shape: "\u2502", color: "#ef4444", label: "League hyperprior mu_alpha" },
+                { shape: "\u2502", color: "#ef4444", label: "League hyperprior μ_α" },
               ].map((l) => (
                 <div key={l.label} style={{
                   display: "flex", alignItems: "center", gap: 6, fontSize: 10,
@@ -722,7 +722,7 @@ export default function App() {
                 <YAxis
                   tick={{ fill: "#666", fontSize: 10 }}
                   label={{
-                    value: "E[delta run exp] x 10^3", angle: -90,
+                    value: "E[δRE] × 10³", angle: -90,
                     position: "insideLeft", fill: "#555", fontSize: 10,
                   }}
                 />
@@ -734,7 +734,7 @@ export default function App() {
                       <div style={tooltipStyle}>
                         <div style={{ fontWeight: 700, color: "#fff" }}>Count: {d.count}</div>
                         <div>
-                          E[DRE] x 10^3:{" "}
+                          E[δRE] × 10³:{" "}
                           <span style={{ color: d.expectedDRE < 0 ? "#34d399" : "#f87171" }}>
                             {d.expectedDRE.toFixed(1)}
                           </span>
@@ -773,7 +773,7 @@ export default function App() {
         textAlign: "center", lineHeight: 1.6,
       }}>
         <div>
-          Model: y ~ Normal(alpha[pitcher] + X*beta, sigma) | alpha[pitcher] ~ Normal(mu_alpha, sigma_alpha)
+          Model: y ~ Normal(α[pitcher] + Xβ, σ) | α[pitcher] ~ Normal(μ_α, σ_α)
         </div>
         <div>
           Data: {data._meta.year} Statcast via pybaseball |{" "}
