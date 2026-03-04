@@ -369,6 +369,8 @@ export default function App() {
         <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
           {[
             { label: "TEAM", value: pitcher.team || "—" },
+            { label: "ERA", value: pitcher.era != null ? pitcher.era.toFixed(2) : "—" },
+            { label: "IP", value: pitcher.inningsPitched != null ? pitcher.inningsPitched.toFixed(1) : "—" },
             { label: "PITCHES", value: pitcher.nPitches.toLocaleString() },
             {
               label: "alpha x 10^3",
