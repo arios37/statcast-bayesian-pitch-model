@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell, ReferenceLine,
@@ -157,6 +157,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("movement");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef(null);
 
   // Load JSON data
   useEffect(() => {
@@ -284,6 +285,7 @@ export default function App() {
               SEARCH PITCHER
             </div>
             <input
+              ref={searchRef}
               type="text"
               value={searchOpen ? searchQuery : selectedPitcher || ""}
               placeholder="Type a name..."
@@ -294,13 +296,11 @@ export default function App() {
                 if (e.key === "Enter" && filteredPitchers.length > 0) {
                   setSelectedPitcher(filteredPitchers[0]);
                   setSearchQuery("");
-                  setSearchOpen(false);
-                  e.target.blur();
+                  searchRef.current?.blur();
                 }
                 if (e.key === "Escape") {
                   setSearchQuery("");
-                  setSearchOpen(false);
-                  e.target.blur();
+                  searchRef.current?.blur();
                 }
               }}
               style={{
