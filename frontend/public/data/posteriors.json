@@ -1,0 +1,300 @@
+{
+  "_meta": {
+    "generated": "2026-03-04T00:00:00",
+    "year": 2025,
+    "totalPitches": 709144,
+    "totalPitchers": 872,
+    "modelType": "hierarchical_normal",
+    "samplerInfo": {
+      "draws": 1000,
+      "tune": 500,
+      "chains": 4,
+      "targetAccept": 0.9,
+      "subsampleSize": 50000,
+      "nPitchersInModel": 100
+    },
+    "_note": "Seed file from notebook 04 output. Regenerate with: python -m src.export_posteriors"
+  },
+  "hyperprior": {
+    "mu_alpha_mean": 0.0007,
+    "mu_alpha_sd": 0.0014,
+    "sigma_alpha_mean": 0.0035,
+    "sigma_alpha_sd": 0.002,
+    "sigma_obs": 0.2297
+  },
+  "leagueMeanDRE": -0.0005,
+  "fixedEffects": {
+    "beta_velo": { "mean": -0.0015, "sd": 0.0018, "hdi94": [-0.0051, 0.0018] },
+    "beta_hmov": { "mean": -0.001, "sd": 0.0012, "hdi94": [-0.0031, 0.0012] },
+    "beta_vmov": { "mean": 0.0, "sd": 0.0017, "hdi94": [-0.0031, 0.003] },
+    "beta_loc_x": { "mean": 0.0003, "sd": 0.0011, "hdi94": [-0.0016, 0.0025] },
+    "beta_loc_z": { "mean": 0.0011, "sd": 0.0011, "hdi94": [-0.001, 0.0033] },
+    "beta_count": { "mean": 0.0017, "sd": 0.001, "hdi94": [-0.0003, 0.0036] },
+    "beta_platoon": { "mean": -0.0028, "sd": 0.0021, "hdi94": [-0.0069, 0.0011] }
+  },
+  "diagnostics": {
+    "divergences": 0,
+    "parameters": {
+      "mu_alpha": { "mean": 0.0007, "sd": 0.0014, "r_hat": 1.0002, "ess_bulk": 3191 },
+      "sigma_alpha": { "mean": 0.0035, "sd": 0.002, "r_hat": 1.0071, "ess_bulk": 927 },
+      "sigma": { "mean": 0.2297, "sd": 0.0007, "r_hat": 1.0009, "ess_bulk": 6543 }
+    }
+  },
+  "pitchers": {
+    "Yoshinobu Yamamoto": {
+      "id": "yoshinobu_yamamoto",
+      "name": "Yoshinobu Yamamoto",
+      "pitcherId": 808967,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 95.2, "spin": 2410, "pfx_x": -5.1, "pfx_z": 15.8, "usage": 0.32, "rawDRE": -0.012 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 84.6, "spin": 2680, "pfx_x": 3.8, "pfx_z": 1.2, "usage": 0.22, "rawDRE": -0.018 },
+        "CU": { "name": "Curveball", "color": "#2ecc71", "velo": 78.1, "spin": 2890, "pfx_x": 5.2, "pfx_z": -8.4, "usage": 0.14, "rawDRE": -0.008 },
+        "FS": { "name": "Splitter", "color": "#264653", "velo": 88.4, "spin": 1520, "pfx_x": -8.9, "pfx_z": 2.1, "usage": 0.18, "rawDRE": -0.021 },
+        "FC": { "name": "Cutter", "color": "#9b59b6", "velo": 90.8, "spin": 2310, "pfx_x": 1.2, "pfx_z": 10.1, "usage": 0.14, "rawDRE": -0.006 }
+      },
+      "nPitches": 2717,
+      "rawMeanDRE": -0.0146,
+      "posteriorMean": -0.012632,
+      "posteriorSD": 0.003048,
+      "ci90": [-0.017645, -0.007619],
+      "ci94": [-0.018362, -0.006902],
+      "estimatedERA": 2.21,
+      "estimatedIP": 175.3
+    },
+    "Tyler Glasnow": {
+      "id": "tyler_glasnow",
+      "name": "Tyler Glasnow",
+      "pitcherId": 607192,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 96.8, "spin": 2490, "pfx_x": -6.2, "pfx_z": 17.1, "usage": 0.52, "rawDRE": -0.005 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 85.2, "spin": 2750, "pfx_x": 2.1, "pfx_z": -0.8, "usage": 0.28, "rawDRE": -0.012 },
+        "CU": { "name": "Curveball", "color": "#2ecc71", "velo": 79.5, "spin": 2920, "pfx_x": 6.8, "pfx_z": -10.2, "usage": 0.10, "rawDRE": -0.003 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 88.1, "spin": 1680, "pfx_x": -10.4, "pfx_z": 4.8, "usage": 0.10, "rawDRE": -0.008 }
+      },
+      "nPitches": 1480,
+      "rawMeanDRE": -0.0069,
+      "posteriorMean": -0.005821,
+      "posteriorSD": 0.004126,
+      "ci90": [-0.012607, 0.000965],
+      "ci94": [-0.013578, 0.001936],
+      "estimatedERA": 3.29,
+      "estimatedIP": 95.5
+    },
+    "Shohei Ohtani": {
+      "id": "shohei_ohtani",
+      "name": "Shohei Ohtani",
+      "pitcherId": 660271,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 96.4, "spin": 2380, "pfx_x": -6.8, "pfx_z": 16.2, "usage": 0.35, "rawDRE": -0.011 },
+        "ST": { "name": "Sweeper", "color": "#e76f51", "velo": 82.5, "spin": 2720, "pfx_x": 5.1, "pfx_z": -2.4, "usage": 0.30, "rawDRE": -0.022 },
+        "FS": { "name": "Splitter", "color": "#264653", "velo": 88.9, "spin": 1480, "pfx_x": -9.2, "pfx_z": 1.8, "usage": 0.25, "rawDRE": -0.018 },
+        "CU": { "name": "Curveball", "color": "#2ecc71", "velo": 76.8, "spin": 2950, "pfx_x": 8.1, "pfx_z": -12.5, "usage": 0.10, "rawDRE": -0.004 }
+      },
+      "nPitches": 753,
+      "rawMeanDRE": -0.0156,
+      "posteriorMean": -0.011541,
+      "posteriorSD": 0.004892,
+      "ci90": [-0.019588, -0.003494],
+      "ci94": [-0.020738, -0.002344],
+      "estimatedERA": 2.07,
+      "estimatedIP": 48.6
+    },
+    "Blake Snell": {
+      "id": "blake_snell",
+      "name": "Blake Snell",
+      "pitcherId": 605483,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 95.8, "spin": 2410, "pfx_x": -5.9, "pfx_z": 16.4, "usage": 0.48, "rawDRE": -0.006 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 85.1, "spin": 2640, "pfx_x": 3.5, "pfx_z": -0.4, "usage": 0.25, "rawDRE": -0.014 },
+        "CU": { "name": "Curveball", "color": "#2ecc71", "velo": 78.4, "spin": 2880, "pfx_x": 7.2, "pfx_z": -9.8, "usage": 0.15, "rawDRE": -0.011 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 87.5, "spin": 1620, "pfx_x": -11.1, "pfx_z": 3.6, "usage": 0.12, "rawDRE": -0.009 }
+      },
+      "nPitches": 1028,
+      "rawMeanDRE": -0.0096,
+      "posteriorMean": -0.007832,
+      "posteriorSD": 0.004588,
+      "ci90": [-0.015379, -0.000285],
+      "ci94": [-0.016457, 0.000793],
+      "estimatedERA": 2.91,
+      "estimatedIP": 66.3
+    },
+    "Roki Sasaki": {
+      "id": "roki_sasaki",
+      "name": "Roki Sasaki",
+      "pitcherId": 808963,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 98.2, "spin": 2340, "pfx_x": -4.8, "pfx_z": 18.2, "usage": 0.45, "rawDRE": 0.004 },
+        "FS": { "name": "Splitter", "color": "#264653", "velo": 90.1, "spin": 1420, "pfx_x": -10.2, "pfx_z": 1.2, "usage": 0.35, "rawDRE": -0.005 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 86.8, "spin": 2580, "pfx_x": 3.2, "pfx_z": -1.1, "usage": 0.15, "rawDRE": 0.002 },
+        "CU": { "name": "Curveball", "color": "#2ecc71", "velo": 78.9, "spin": 2810, "pfx_x": 6.4, "pfx_z": -9.2, "usage": 0.05, "rawDRE": 0.008 }
+      },
+      "nPitches": 565,
+      "rawMeanDRE": 0.0011,
+      "posteriorMean": 0.000871,
+      "posteriorSD": 0.005482,
+      "ci90": [-0.008147, 0.009889],
+      "ci94": [-0.009435, 0.011177],
+      "estimatedERA": 4.40,
+      "estimatedIP": 36.5
+    },
+    "Emmet Sheehan": {
+      "id": "emmet_sheehan",
+      "name": "Emmet Sheehan",
+      "pitcherId": 686218,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 95.1, "spin": 2350, "pfx_x": -5.4, "pfx_z": 15.6, "usage": 0.42, "rawDRE": -0.005 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 84.8, "spin": 2620, "pfx_x": 4.1, "pfx_z": 0.2, "usage": 0.30, "rawDRE": -0.012 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 86.2, "spin": 1550, "pfx_x": -10.8, "pfx_z": 3.4, "usage": 0.18, "rawDRE": -0.007 },
+        "CU": { "name": "Curveball", "color": "#2ecc71", "velo": 79.2, "spin": 2870, "pfx_x": 6.5, "pfx_z": -8.9, "usage": 0.10, "rawDRE": -0.009 }
+      },
+      "nPitches": 1146,
+      "rawMeanDRE": -0.0084,
+      "posteriorMean": -0.006928,
+      "posteriorSD": 0.004364,
+      "ci90": [-0.014107, 0.000251],
+      "ci94": [-0.015132, 0.001276],
+      "estimatedERA": 3.08,
+      "estimatedIP": 73.9
+    },
+    "Edwin Diaz": {
+      "id": "edwin_diaz",
+      "name": "Edwin Diaz",
+      "pitcherId": 621242,
+      "inModel": false,
+      "pitches": {
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 88.4, "spin": 2720, "pfx_x": 2.8, "pfx_z": -1.8, "usage": 0.55, "rawDRE": -0.022 },
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 97.8, "spin": 2440, "pfx_x": -6.4, "pfx_z": 17.5, "usage": 0.42, "rawDRE": -0.008 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 89.2, "spin": 1580, "pfx_x": -9.8, "pfx_z": 3.2, "usage": 0.03, "rawDRE": -0.004 }
+      },
+      "nPitches": 1067,
+      "rawMeanDRE": -0.016,
+      "posteriorMean": -0.012981,
+      "posteriorSD": 0.004468,
+      "ci90": [-0.020331, -0.005631],
+      "ci94": [-0.021381, -0.004581],
+      "estimatedERA": 1.99,
+      "estimatedIP": 68.8
+    },
+    "Tanner Scott": {
+      "id": "tanner_scott",
+      "name": "Tanner Scott",
+      "pitcherId": 656945,
+      "inModel": false,
+      "pitches": {
+        "SI": { "name": "Sinker", "color": "#f39c12", "velo": 96.4, "spin": 2280, "pfx_x": -10.8, "pfx_z": 8.2, "usage": 0.48, "rawDRE": 0.005 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 85.6, "spin": 2650, "pfx_x": 4.2, "pfx_z": -0.8, "usage": 0.42, "rawDRE": -0.002 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 88.1, "spin": 1520, "pfx_x": -12.4, "pfx_z": 2.8, "usage": 0.10, "rawDRE": 0.008 }
+      },
+      "nPitches": 901,
+      "rawMeanDRE": 0.0027,
+      "posteriorMean": 0.002178,
+      "posteriorSD": 0.004862,
+      "ci90": [-0.005818, 0.010174],
+      "ci94": [-0.006962, 0.011318],
+      "estimatedERA": 4.63,
+      "estimatedIP": 58.1
+    },
+    "Blake Treinen": {
+      "id": "blake_treinen",
+      "name": "Blake Treinen",
+      "pitcherId": 595014,
+      "inModel": true,
+      "pitches": {
+        "SI": { "name": "Sinker", "color": "#f39c12", "velo": 96.1, "spin": 2220, "pfx_x": -12.4, "pfx_z": 6.8, "usage": 0.55, "rawDRE": 0.009 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 86.2, "spin": 2580, "pfx_x": 3.8, "pfx_z": -0.6, "usage": 0.30, "rawDRE": -0.002 },
+        "FC": { "name": "Cutter", "color": "#9b59b6", "velo": 91.4, "spin": 2340, "pfx_x": 1.2, "pfx_z": 9.4, "usage": 0.15, "rawDRE": 0.011 }
+      },
+      "nPitches": 495,
+      "rawMeanDRE": 0.007,
+      "posteriorMean": 0.001,
+      "posteriorSD": 0.0052,
+      "ci90": [-0.007554, 0.009554],
+      "ci94": [-0.008774, 0.010774],
+      "estimatedERA": 5.22,
+      "estimatedIP": 31.9
+    },
+    "Alex Vesia": {
+      "id": "alex_vesia",
+      "name": "Alex Vesia",
+      "pitcherId": 681911,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 94.8, "spin": 2480, "pfx_x": -6.1, "pfx_z": 16.8, "usage": 0.45, "rawDRE": -0.008 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 83.2, "spin": 2640, "pfx_x": 4.8, "pfx_z": -1.4, "usage": 0.35, "rawDRE": -0.016 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 85.8, "spin": 1480, "pfx_x": -11.2, "pfx_z": 3.1, "usage": 0.20, "rawDRE": -0.012 }
+      },
+      "nPitches": 1000,
+      "rawMeanDRE": -0.0114,
+      "posteriorMean": -0.009382,
+      "posteriorSD": 0.004518,
+      "ci90": [-0.016813, -0.001951],
+      "ci94": [-0.017876, -0.000888],
+      "estimatedERA": 2.66,
+      "estimatedIP": 64.5
+    },
+    "Gavin Stone": {
+      "id": "gavin_stone",
+      "name": "Gavin Stone",
+      "pitcherId": 694813,
+      "inModel": false,
+      "pitches": {
+        "SI": { "name": "Sinker", "color": "#f39c12", "velo": 93.8, "spin": 2220, "pfx_x": -10.2, "pfx_z": 7.8, "usage": 0.35, "rawDRE": -0.003 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 83.1, "spin": 2580, "pfx_x": 5.4, "pfx_z": -1.2, "usage": 0.28, "rawDRE": -0.010 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 85.2, "spin": 1440, "pfx_x": -12.1, "pfx_z": 3.2, "usage": 0.22, "rawDRE": -0.008 },
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 94.5, "spin": 2380, "pfx_x": -5.5, "pfx_z": 15.4, "usage": 0.15, "rawDRE": -0.001 }
+      },
+      "nPitches": 812,
+      "rawMeanDRE": -0.0055,
+      "posteriorMean": -0.004412,
+      "posteriorSD": 0.004982,
+      "ci90": [-0.012605, 0.003781],
+      "ci94": [-0.013778, 0.004954],
+      "estimatedERA": 3.48,
+      "estimatedIP": 52.4
+    },
+    "Evan Phillips": {
+      "id": "evan_phillips",
+      "name": "Evan Phillips",
+      "pitcherId": 623465,
+      "inModel": false,
+      "pitches": {
+        "FC": { "name": "Cutter", "color": "#9b59b6", "velo": 90.2, "spin": 2380, "pfx_x": 0.8, "pfx_z": 10.2, "usage": 0.48, "rawDRE": -0.025 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 84.8, "spin": 2620, "pfx_x": 3.4, "pfx_z": -0.4, "usage": 0.32, "rawDRE": -0.018 },
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 93.1, "spin": 2410, "pfx_x": -5.2, "pfx_z": 15.1, "usage": 0.20, "rawDRE": -0.021 }
+      },
+      "nPitches": 92,
+      "rawMeanDRE": -0.0229,
+      "posteriorMean": -0.007828,
+      "posteriorSD": 0.007214,
+      "ci90": [-0.019695, 0.004039],
+      "ci94": [-0.021390, 0.005734],
+      "estimatedERA": 1.44,
+      "estimatedIP": 5.9
+    },
+    "Edgardo Henriquez": {
+      "id": "edgardo_henriquez",
+      "name": "Edgardo Henriquez",
+      "pitcherId": 683618,
+      "inModel": false,
+      "pitches": {
+        "FF": { "name": "4-Seam Fastball", "color": "#e74c3c", "velo": 99.2, "spin": 2480, "pfx_x": -7.2, "pfx_z": 17.8, "usage": 0.55, "rawDRE": 0.002 },
+        "SL": { "name": "Slider", "color": "#3498db", "velo": 87.4, "spin": 2580, "pfx_x": 3.1, "pfx_z": -0.8, "usage": 0.30, "rawDRE": -0.006 },
+        "CH": { "name": "Changeup", "color": "#e67e22", "velo": 89.8, "spin": 1520, "pfx_x": -10.4, "pfx_z": 3.5, "usage": 0.15, "rawDRE": -0.002 }
+      },
+      "nPitches": 279,
+      "rawMeanDRE": -0.0014,
+      "posteriorMean": -0.000752,
+      "posteriorSD": 0.006312,
+      "ci90": [-0.011135, 0.009631],
+      "ci94": [-0.012619, 0.011115],
+      "estimatedERA": 4.05,
+      "estimatedIP": 18.0
+    }
+  }
+}
