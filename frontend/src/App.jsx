@@ -536,6 +536,7 @@ export default function App() {
                 />
                 <YAxis
                   tick={{ fill: "#666", fontSize: 10 }}
+                  domain={[0, (dataMax) => Math.ceil(dataMax * 1.15)]}
                   label={{ value: "density", angle: -90, position: "insideLeft", fill: "#555", fontSize: 10 }}
                 />
                 <Tooltip content={<PosteriorTooltip />} />
